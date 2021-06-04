@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0e0008;
+            overflow: hidden;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        li {
+            list-style: none;
+            text-align: center;
+        }
+
+        #app {
+            position: relative;
+            width: 730px;
+            height: 730px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .year,
+        .month,
+        .day,
+        .hour,
+        .min,
+        .sec,
+        .Ap {
+            position: absolute;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 1s;
+        }
+
+        .year {
+            position: absolute;
+            width: 830px;
+            height: 20px;
+        }
+
+        .year>ul li {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 20px;
+            text-align: left;
+            background-color: #535353;
+        }
+
+        .month {
+            width: 200px;
+            height: 200px;
+        }
+
+        .day {
+            width: 300px;
+            height: 300px;
+        }
+
+        .month ul,
+        .day ul,
+        .min ul,
+        .sec ul,
+        .Ap ul {
+            position: relative;
+            left: -40px;
+            top: -10px;
+        }
+
+        .month ul li,
+        .day ul li,
+        .min ul li,
+        .sec ul li,
+        .Ap ul li {
+            position: absolute;
+            width: 80px;
+            height: 20px;
+        }
+
+        .month ul li:nth-child(1) {
+            transform: rotate(0deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(2) {
+            transform: rotate(30deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(3) {
+            transform: rotate(60deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(4) {
+            transform: rotate(90deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(5) {
+            transform: rotate(120deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(6) {
+            transform: rotate(150deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(7) {
+            transform: rotate(180deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(8) {
+            transform: rotate(210deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(9) {
+            transform: rotate(240deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(10) {
+            transform: rotate(270deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(11) {
+            transform: rotate(300deg) translateX(80px);
+        }
+
+        .month ul li:nth-child(12) {
+            transform: rotate(330deg) translateX(80px);
+        }
+
+        /* //////////////////// */
+        /* //////////////////// */
+        /* //////////////////// */
+        .Ap {
+            width: 400px;
+            height: 400px;
+        }
+
+        .Ap ul li:nth-child(1) {
+            transform: rotate(0deg) translateX(200px);
+        }
+
+        .Ap ul li:nth-child(2) {
+            transform: rotate(180deg) translateX(200px);
+        }
+
+        .hour {
+            width: 400px;
+            height: 400px;
+        }
+
+        .hour ul {
+            position: relative;
+            left: -25px;
+            top: -10px;
+        }
+
+        .hour ul li {
+            position: absolute;
+            width: 50px;
+            height: 20px;
+        }
+
+        .hour ul li:nth-child(1) {
+            transform: rotate(0deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(2) {
+            transform: rotate(30deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(3) {
+            transform: rotate(60deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(4) {
+            transform: rotate(90deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(5) {
+            transform: rotate(120deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(6) {
+            transform: rotate(150deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(7) {
+            transform: rotate(180deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(8) {
+            transform: rotate(210deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(9) {
+            transform: rotate(240deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(10) {
+            transform: rotate(270deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(11) {
+            transform: rotate(300deg) translateX(240px);
+        }
+
+        .hour ul li:nth-child(12) {
+            transform: rotate(330deg) translateX(240px);
+        }
+
+        /* ////////////////// */
+        .min {
+            width: 500px;
+            height: 500px;
+        }
+
+        .sec {
+            width: 600px;
+            height: 600px;
+        }
+
+        /* .min ul li:nth-child(1) {
+  transform: rotate(0deg) translateX(340px);
+} */
+        /* .sec ul li:nth-child(1) {
+  transform: rotate(0deg) translateX(400px);
+} */
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="year">
+            <ul>
+                <li class="yearAll"></li>
+            </ul>
+        </div>
+        <div class="month">
+            <ul>
+                <li v-for="(item,index) in monthList">{{item}}</li>
+            </ul>
+        </div>
+        <div class="day">
+            <ul>
+                <li v-for='item in dayList'>{{item}}</li>
+            </ul>
+        </div>
+        <div class="hour">
+            <ul>
+                <li v-for='item in hourList'>{{item}}</li>
+            </ul>
+        </div>
+        <div class="min">
+            <ul>
+                <li v-for='item in  minList'>{{item}}</li>
+            </ul>
+        </div>
+        <div class="sec">
+            <ul>
+                <li v-for='item in secList'>{{item}}</li>
+            </ul>
+        </div>
+        <div class="Ap">
+            <ul>
+                <li>上午</li>
+                <li>下午</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    monthList: [
+                        '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'
+                    ],
+                    dayList: ['一号', '二号', '三号', '四号', '五号', '六号', '七号', '八号', '九号', '十号',
+                        '十一号', '十二号', '十三号', '十四号', '十五号', '十六号', '十七号', '十八号', '十九号', '二十号',
+                        '二十一号', '二十二号', '二十三号', '二十四号', '二十五号', '二十六号', '二十七号', '二十八号', '二十九号',
+                        '三十号', '三十一号'],
+                    hourList: ['十二时', '一时', '二时', '三时', '四时', '五时', '六时', '七时', '八时', '九时', '十时', '十一时'],
+                    minList: ['零分', '一分', '二分', '三分', '四分', '五分', '六分', '七分', '八分', '九分', '十分',
+                        '十一分', '十二分', '十三分', '十四分', '十五分', '十六分', '十七分', '十八分', '十九分', '二十分',
+                        '二十一分', '二十二分', '二十三分', '二十四分', '二十五分', '二十六分', '二十七分', '二十八分', '二十九分',
+                        '三十分', '三十一分', '三十二分', '三十三分', '三十四分', '三十五分', '三十六分', '三十七分', '三十八分',
+                        '三十九分', '四十分', '四十一分', '四十二分', '四十三分', '四十四分', '四十五分',
+                        '四十六分', '四十七分', '四十八分', '四十九分', '五十分', '五十一分', '五十二分',
+                        '五十三分', '五十四分', '五十五分', '五十六分', '五十七分', '五十八分', '五十九分'
+                    ],
+                    secList: ['零秒', '一秒', '二秒', '三秒', '四秒', '五秒', '六秒', '七秒', '八秒', '九秒', '十秒',
+                        '十一秒', '十二秒', '十三秒', '十四秒', '十五秒', '十六秒', '十七秒', '十八秒', '十九秒', '二十秒',
+                        '二十一秒', '二十二秒', '二十三秒', '二十四秒', '二十五秒', '二十六秒', '二十七秒', '二十八秒', '二十九秒',
+                        '三十秒', '三十一秒', '三十二秒', '三十三秒', '三十四秒', '三十五秒', '三十六秒', '三十七秒', '三十八秒',
+                        '三十九秒', '四十秒', '四十一秒', '四十二秒', '四十三秒', '四十四秒',
+                        '四十五秒', '四十六秒', '四十七秒', '四十八秒', '四十九秒', '五十秒', '五十一秒',
+                        '五十二秒', '五十三秒', '五十四秒', '五十五秒', '五十六秒', '五十七秒', '五十八秒', '五十九秒'
+                    ]
+                }
+            },
+            methods: {
+            },
+        })
+    </script>
+    <script>
+        var minStyle = document.querySelectorAll('.min ul li');
+        for (let i = 0; i < minStyle.length; i++) {
+            minStyle[i].style.transform = `rotate(${i * 6}deg)  translateX(300px)`;
+        }
+        var secStyle = document.querySelectorAll('.sec ul li');
+        for (let i = 0; i < secStyle.length; i++) {
+            secStyle[i].style.transform = `rotate(${i * 6}deg) translateX(380px)`;
+        }
+        var dayStyle = document.querySelectorAll('.day ul li');
+        for (let i = 0; i < dayStyle.length; i++) {
+            dayStyle[i].style.transform = `rotate(${i * 11.25}deg) translateX(140px)`;
+        }
+        // 获取年份
+        var date = new Date();
+        document.querySelector('.yearAll').innerHTML = date.getFullYear();
+        // 秒旋转
+        var sec_step = 0;
+        var sec = document.querySelector('.sec');
+        function sell() {
+            var date = new Date();
+            sec_step = (date.getSeconds() + 1) * -6;
+            var timer = null;
+            setInterval(() => {
+                sec.style.transform = `rotate(${sec_step}deg)`;
+                sec_step -= 6
+            }, 1000);
+        }
+        sell();
+        // 分旋转
+        var min_step = 0;
+        var min = document.querySelector('.min');
+        function changeMIn() {
+            var timer = null;
+            timer = setInterval(() => {
+                var date = new Date()
+                min_step = date.getMinutes() * -6;
+                min.style.transform = `rotate(${min_step}deg)`
+            }, 1000);
+        }
+        changeMIn();
+        //时针
+        var hour_step = 0;
+        var hour = document.querySelector('.hour');
+        var AP = document.querySelector('.Ap');
+        function changeHour() {
+            var timer = null;
+            timer = setInterval(() => {
+                var date = new Date();
+                var hours = date.getHours();
+                hour_step = hours * -30;
+                hour.style.transform = `rotate(${hour_step}deg)`;
+                if (hours > 12) {
+                    AP.style.transform = 'rotate(180deg)';
+                } else {
+                    AP.style.transform = 'rotate(0deg)';
+                }
+            }, 1000);
+        }
+        changeHour();
+        //日
+        function changeDay() {
+            var data = new Date();
+            var day_step = data.getDate() * -11.25 + 11.25;
+            document.querySelector('.day').style.transform = 'rotate' + '(' + day_step + 'deg)'
+        }
+        changeDay();
+        // 月
+        function changeMonth() {
+            var data = new Date()
+            var month_step = data.getMonth() * -30;
+            document.querySelector('.month').style.transform = 'rotate' + '(' + month_step + 'deg)'
+        }
+        changeMonth();
+
+    </script>
+
+
+    <script>
+        function Foo() {
+            getName = function () {
+                console.log(1);
+            }
+            return this;
+        }
+        Foo.getName = function () { console.log(2) };
+        Foo.prototype.getName = function () { console.log(3) };
+        var getName = function () { console.log(4); }
+        function getName() { console.log(5); }
+
+        new Foo().getName();
+        Foo().getName();
+        getName();
+        Foo.getName();
+        new new Foo().getName();
+        getName();
+        new Foo.getName();
+    </script>
+</body>
+
+</html>
