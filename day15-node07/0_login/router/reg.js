@@ -1,25 +1,23 @@
-//导入express模块
+// 引入router模块
 const express = require('express');
-// 导入path模块
+// path模块
 const path = require('path');
-
+// 创建router
 const router = new express.Router();
 
-router.use((req, res, next) => {
-  //查看用户输入内容 拿到用户名和密码
+const isRegFun = (req, res, next) => {
   const { username, password } = req.query;
-
-  const userReg = /^[0-9a-zA-Z_]{0,20}$/;
-  const passReg = /^[0-9a-zA-Z_]{0,10}$/;
+  const userReg = /^[A-z0-9_]{1,20}$/;
+  const passReg = /^[A-z0-9_]{1,20}$/;
   if (!userReg.test(username) || !passReg.test(password)) {
-    //拼接err.ejs的路径
     const filePath = path.resolve(__dirname, '../views/err.ejs');
     return res.render(filePath, {
-      errData: '账号和密码格式不对',
+      errData: '用户名或密码格式错误',
     });
   }
-
   next();
-});
+};
 
+router.use('/login', isRegFun);
+router.use('/register', isRegFun);
 module.exports = router;

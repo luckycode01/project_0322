@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    input {
+      outline: none;
+      border: none;
+      width: 160px;
+      height: 30px;
+    }
+
+    .layout {
+      position: relative;
+      top: 100px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 350px;
+      height: 220px;
+      background-color: rgb(228, 228, 228);
+      box-shadow: 10px 10px 8px 8px rgba(204, 204, 204, 0.3);
+    }
+
+    h1 {
+      padding-top: 10px;
+      text-align: center;
+      color: #8e8e8e;
+      font-size: 30px;
+    }
+
+    .user {
+      position: absolute;
+      left: 60px;
+      top: 60px;
+    }
+
+    .pass {
+      position: absolute;
+      left: 60px;
+      top: 120px;
+    }
+    span{
+      float: left;
+      line-height: 30px;
+      display: block;
+      width: 70px;
+    }
+    button{
+      width: 80px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 18px;
+      color:#ffffff;
+      background-color: #8e8e8e;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    button:hover{
+      box-shadow: 3px -3px 0 rgba(153, 153, 153, 0.4) ;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <h1>登录页面</h1>
+    <form action="/login">
+      <div class="user">
+        <label>
+          <span>用户名：</span> <input type="text" name="username" placeholder="please input user name">
+        </label>
+      </div>
+      <div class="pass">
+        <label>
+          <span>密 码：</span> <input type="password" name="password" placeholder="please input password">
+        </label>
+      </div>
+      <button>登录</button>
+    </form>
+  </div>
+</body>
+
+</html>

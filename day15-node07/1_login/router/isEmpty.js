@@ -5,7 +5,8 @@ const path = require('path');
 
 const router = new express.Router();
 // 中间件 处理账号密码是否位空
-router.use((req, res, next) => {
+
+const isEmptyFunc = (req, res, next) => {
   const { username, password } = req.query;
   if (!username || !password) {
     const filePath = path.resolve(__dirname, '../views/err.ejs');
@@ -14,6 +15,9 @@ router.use((req, res, next) => {
     });
   }
   next();
-});
+};
+
+router.use('/login', isEmptyFunc);
+router.use('/register', isEmptyFunc);
 
 module.exports = router;
