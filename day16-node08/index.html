@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="#" id="form">
+    user: <input type="text" name="user" id="user">
+    <br>
+    pass: <input type="password" name="pass" id="pass">
+    <br>
+    <button id='btn'>submit</button>
+  </form>
+
+  <script>
+    const oform = document.querySelector('#form');
+    const oUser = document.querySelector('#user');
+    const oPass = document.querySelector('#pass');
+    const oBtn = document.querySelector('#btn');
+
+    /* oform.onsubmit = function (e) {
+      // 实例化 XMLHttpRequest对象，，得到一个ajax请求对象
+      const xhr = new XMLHttpRequest();
+      // 打开连接 参数，请求方式，请求地址，是否异步默认true
+      xhr.open('get', '/login', true);
+      // 发送
+      xhr.send();
+      // xhr.onreadystatechange事件可以接受请求过程中readstatechabge
+      xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);
+        // readyState = 4 ，响应状态码为200时表示 响应成功
+        if (xhr.readyState === 4 && xhr.status === 200);
+        {
+          // responseText 接收文本数据，json字符串
+          // responseXML 接收XML数据
+          console.log(JSON.parse(xhr.responseText));
+          console.log(xhr.responseText);
+        }
+      }
+
+      // 阻止浏览器默认事件
+      return false;
+      // e.preventDefault ? e.preventDefault() : e.returnValue = false;
+    } */
+
+    // get请求
+    /*  oform.onsubmit = function (e) {
+       // 实例化XMLHttpRequest对象 得到ajax对象
+       const xhr = new XMLHttpRequest;
+       // 打开连接  三个参数请求方式，请求地址，是否异步（默认为true）
+       xhr.open('get', `/login?user=${oUser.value}&pass=${oPass.value}`, true);
+       // 发送
+       xhr.send(null);
+       // xhr中的 onreadystatechange事件接收请求过程中的readystatechange
+       xhr.onreadystatechange = function () {
+         if (xhr.readyState === 4 && xhr.status === 200) {
+           console.log(xhr.responseText);
+           console.log(JSON.parse(xhr.responseText));
+         }
+ 
+       }
+       return false;
+     } */
+
+
+    //post请求
+    oform.onsubmit = function () {
+      // 实例化XMLHttpRequest对象，，获取ajax对象
+      const xhr = new XMLHttpRequest;
+      // 打开连接，  三个参数：请求方式，请求地址，是否异步
+      xhr.open('post', '/login', 'true')
+
+      // 设置响应头
+      // xhr.setRequestHeader('Content-type', 'application/json;charset=utf-8')
+      // // 发送
+      // xhr.send(JSON.stringify({
+      //   user: oUser.value,
+      //   pass: oPass.value,
+      // }));
+
+      // form表单发送
+      // 设置响应头
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=utf-8');
+      // 发送
+      xhr.send(`user=${oUser.value}&pass=${oPass.value}`)
+
+
+      // onreadystatechange事件 接收请求过程中的readystatecange
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status) {
+          // 接收文本数据
+          console.log(xhr.responseText);
+          console.log(JSON.parse(xhr.responseText));
+        }
+      }
+      return false;
+    }
+  </script>
+</body>
+
+</html>
