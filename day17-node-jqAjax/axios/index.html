@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+  <button id="sub">submit</button>
+
+  <script>
+    $('#sub').click(function () {
+      /*  $.ajax({
+         method: 'get',
+         url: '/login',
+         data: 'user=mm&pass=123',
+         dataType: 'json',
+         headers: { "Cache-control": "set-age=0" }
+       }) */
+
+      /*      $.get('/login', { user: 'www', pass: '123' }, data => {
+             console.log(data);
+           }) */
+
+      // $.post('/login', { user: 'www', pass: '123' }, data => {
+      //   console.log(data);
+      // })
+      /*   $.getJSON('/login', { user: 'www', pass: '123' }, data => {
+          console.log(data);
+        }) */
+
+      /*   axios.get('./login?user=www&pass=3').then(mes => {
+          console.log(mes.data);
+        }).catch(err => {
+          console.log(err);
+        }) */
+
+      /* axios.get('./login', {
+        params: {
+          user: 'www',
+          pass: '123'
+        }
+      }).then(mes => {
+        console.log(mes.data);
+      }).catch(err => {
+        console.log(err);
+      }) */
+
+      axios.post('./login', {
+        user: 'www',
+        pass: '123'
+      }
+      ).then(mes => {
+        console.log(mes.data);
+      }).catch(err => {
+        console.log(err);
+      })
+
+    })
+
+
+
+
+
+  </script>
+</body>
+
+</html>
