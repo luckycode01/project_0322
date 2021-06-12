@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+  <button id="sub">submit</button>
+
+  <script>
+    $('#sub').click(function () {
+      $.getJSON("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=前端&cb=?", function (data) {
+        console.log(data);
+      })
+      // $.getJSON("http://127.0.0.1:3000/login?user=www&pass=123&callback=?", function (data) {
+      //   console.log(data);
+      // })
+    })
+
+
+
+  </script>
+</body>
+
+</html>
