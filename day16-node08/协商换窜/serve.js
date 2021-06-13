@@ -13,35 +13,33 @@ const { resolve6 } = require('dns');
 const app = express();
 
 app.get('/', async (req, res) => {
-  // 接收请求时获取请求头携带的if-none-match 和 if-modified-since信息
-  console.log(req.headers);
+  const filePath = path.resolve(__dirname, 'index.html');
+  const re = fs.createReadStream(filePath);
+
+  // 获取请求的信息，请求头中的if-none-match 和if-modified-since
+  console.log(req.headers['if-none-match'], req.headers['if-modified-since']);
   const ifNoneMatch = req.headers['if-none-match'];
   const ifModifiedSince = req.headers['if-modified-since'];
-  console.log(ifNoneMatch, ifModifiedSince);
 
-  const filePath = path.resolve(__dirname, './index.html');
-  const rs = fs.createReadStream(filePath);
-
-  // fs的stat方法可以得到文件详细信息，
-  // 使用promisify()方法把stat方法包装成promise对象
+  // 获取文件标识，stat方法可以获取文件的详细信息
+  // 使用promisify方法将stat包装为promis对象
   const stat = promisify(fs.stat);
-  // 获取文件详细信息
+  // 获取文件信息
   const fileDetail = await stat(filePath);
   // 获取文件的最后修改时间
   const fileLastTime = fileDetail.mtime.toGMTString();
-  // 获取文件标识
-  const fileEtag = etag(fileDetail);
+  // 获取文件的唯一标识
+  const fileEtag = etag(filePath);
 
-  // 协商缓存，判断最后修改时间和文件标识
-  if (ifNoneMatch === fileEtag && ifModifiedSince === fileLastTime) {
+  // 第二次请求，判断if-none-match和if-modified-since
+  if (ifModifiedSince === fileLastTime && ifNoneMatch === fileEtag) {
     return res.status(304).end();
   }
-
-  // 设置响应头 ，添加文件唯一标识和最后修改时间
+  // 设置文件的唯一标识，最后修改时间（响应头）
   res.set('Etag', fileEtag);
   res.set('Last-Modified', fileLastTime);
 
-  rs.pipe(res);
+  re.pipe(res);
 });
 
 app.listen('3000', (err) => {
