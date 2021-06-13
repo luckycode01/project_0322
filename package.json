@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build":"babel ./day17-node-jqAjax/module/ES6/js -d ./day17-node-jqAjax/module/ES6/build & browserify ./day17-node-jqAjax/module/ES6/build/index.js -o ./day17-node-jqAjax/module/ES6/build/build.js"
+    "build": "babel ./day17-node-jqAjax/module/ES6/js -d ./day17-node-jqAjax/module/ES6/build & browserify ./day17-node-jqAjax/module/ES6/build/index.js -o ./day17-node-jqAjax/module/ES6/build/build.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.6",
+    "etag": "^1.8.1",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "mongoose": "^5.12.13"
