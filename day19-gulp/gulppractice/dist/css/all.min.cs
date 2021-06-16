@@ -1,0 +1,1 @@
+#box,html,html body{width:100%;height:100%}*{margin:0;padding:0}#box{background-color:#fff;margin:auto}#box #icon{width:60%;height:60%;background-color:#e45e5e;margin:auto}#box #icon #test{width:50%;height:50%;background-color:#e7df72;margin:auto}
