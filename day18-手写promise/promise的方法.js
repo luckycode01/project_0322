@@ -91,7 +91,6 @@ myPromise.prototype.then = function (onResolved, onRejected) {
               resolve(value);
             },
             (reason) => {
-              0;
               reject(reason);
             }
           );

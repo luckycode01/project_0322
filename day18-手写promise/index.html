@@ -6,57 +6,79 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <!-- <script src="./promise的then方法.js"></script> -->
-  <script src="./promise完整版.js"></script>
+  <!-- <script src="../../../../3_Node/NB-Plus0322/day10-手写promise/08.allSettled静态方法.js"></script> -->
+  <!-- <script src="./promise的方法.js"></script> -->
+  <script src="./mypromise.js"></script>
 </head>
 
 <body>
   <script>
-    const p1 = new myPromise((resolve, reject) => {
+    const p1 = new Promise((resolve, reject) => {
       setTimeout(() => {
-        // resolve('success');
-        reject('fail');
+        resolve('success');
+        // reject('fail');
       }, 1000);
     })
     console.log(p1);
-    // const p2 = new myPromise((resolve, reject) => {
-    //   setTimeout(() => {
-    //     resolve('success');
-    //     // reject('fail');
-    //   }, 1000);
-    // })
-    // const p3 = new myPromise((resolve, reject) => {
-    //   setTimeout(() => {
-    //     // resolve('success');
-    //     reject('fail');
-    //   }, 1000);
-    // })
-    // console.log(p1);
-    // const p2 = p1.then(data => {
-    //   console.log(11);
-    //   return myPromise.resolve(11);
-    // })
-    // const p3 = p1.catch(err => {
 
-    //   return 'ss'
+    // const p2 = p1.then((data) => {
+    //   return new Promise((resolve, reject) => {
+    //     resolve(11111);
+    //   })
+    // });
+    // console.log(p2);
+
+    // const p3 = p1.catch((reason) => {
+    //   return new Promise((resolve, reject) => {
+    //     resolve(11);
+    //   })
     // })
     // console.log(p3);
 
     // const p2 = p1.finally(() => {
+    //   // return 11;
     //   return new myPromise((resolve, reject) => {
-    //     resolve(1);
-    //     // reject(1)
+    //     // resolve(1);
+    //     reject(1)
     //   });
     // })
     // console.log(p2);
 
     // const p2 = myPromise.resolve(11);
     // const p2 = myPromise.resolve(p1);
-    // const p2 = myPromise.reject(p1);
+    // const p2 = Promise.reject(p1);
     // console.log(p2);
 
-    // const p4 = myPromise.allSettled([p1, p2, p3]);
+
+    const p2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('success');
+        // reject('fail');
+      }, 1000);
+    })
+    const p3 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // resolve('success');
+        reject('fail');
+      }, 1000);
+    })
+    // console.log(p1);
+    // const p2 = p1.then(data => {
+    //   console.log(11);
+    //   return myPromise.resolve(11);
+    // })
+    // console.log(p2);
+    // const p3 = p1.catch(err => {
+
+    //   return 'ss'
+    // })
+    // console.log(p3);
+
+
+    // const p4 = myPromise.all([p1, p2, p3]);
     // console.log(p4);
+    const p4 = Promise.allSettled([p1, p2, p3]);
+    console.log(p4);
   </script>
 
 </body>
