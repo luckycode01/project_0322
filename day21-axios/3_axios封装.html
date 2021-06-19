@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn1">查询</button>
+  <button id="btn2">增加</button>
+  <button id="btn3">修改</button>
+  <button id="btn4">删除</button>
+
+</body>
+<script>
+  function axios({ url, method = "GET", data = null, params }) {
+    return new Promise((resolve, reject) => {
+      // 实例化一个xhr对象
+      const xhr = new XMLHttpRequest
+      // 判断是否存在params
+      let re = "";
+      if (params) {
+        // 转为查询字符串格式  ?aa=aa&bb=bb
+        re = Object.keys(params).reduce((q, c) => {
+          return q + c + '=' + params[c] + '&';
+        }, '?')
+      }
+      // 打开路径
+      xhr.open(method, url + re, true);
+      //发送
+      // 一般只要POST和PUT请求是data传值
+      if (method === "POST" || method === "PUT") {
+        // data传值是对象格式，需要先处理为form表达格式，或json字符串格式
+        // 设置请求头
+        xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+        xhr.send(JSON.stringify(data));
+      }
+      else {
+        xhr.send()
+      }
+      // 绑定事件监听
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve({
+            config: {},
+            headers: {},
+            data: JSON.parse(xhr.responseText),
+          })
+          return;
+        }
+        //抛出错误 地址，错误代码文本描述
+        reject(`${url} ${xhr.statusText}`)
+      }
+
+
+
+
+
+    })
+
+  }
+
+
+  const btn1 = document.getElementById('btn1');
+  const btn2 = document.getElementById('btn2');
+  const btn3 = document.getElementById('btn3');
+  const btn4 = document.getElementById('btn4');
+
+  // 查
+  btn1.onclick = function () {
+    axios({
+      url: 'http://localhost:3000/student',
+      method: 'get',
+      params: {
+        id: 1
+      },
+      timeout: 1000
+    }).then(mes => {
+      console.log(mes.data);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+  // 增
+  btn2.onclick = function () {
+    axios({
+      url: 'http://localhost:3000/student',
+      method: 'post',
+      data: {
+        "name": "xiaoma",
+        "age": 18
+      },
+      timeout: 1000
+    }).then(mes => {
+      console.log(mes.data);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+  // 改
+  btn3.onclick = function () {
+    axios({
+      url: 'http://localhost:3000/student/1',
+      method: 'put',
+      data: {
+        name: "laozhang",
+        age: 20
+      },
+      timeout: 1000
+    }).then(mes => {
+      console.log(mes.data);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+  // 删
+  btn4.onclick = function () {
+    axios({
+      url: 'http://localhost:3000/student/8',
+      method: 'delete',
+      timeout: 1000
+    }).then(mes => {
+      console.log(mes.data);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+</script>
+
+</html>

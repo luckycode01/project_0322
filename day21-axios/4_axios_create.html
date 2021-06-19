@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn1">查询</button>
+  <button id="btn2">增加</button>
+  <button id="btn3">修改</button>
+  <button id="btn4">删除</button>
+
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+<script>
+  const btn1 = document.getElementById('btn1');
+  const btn2 = document.getElementById('btn2');
+  const btn3 = document.getElementById('btn3');
+  const btn4 = document.getElementById('btn4');
+
+  // 创建一个自定义配置的axios对象
+  const myAxios = axios.create({
+    baseURL: 'http://127.0.0.1:3000',
+    Headers: {},
+    timeout: 3000,
+  })
+  const myAxios2 = axios.create({
+    baseURL: 'http://127.0.0.1:4000',
+    Headers: {},
+    timeout: 3000,
+  })
+
+  // 查
+  btn1.onclick = function () {
+    myAxios({
+      url: '/student',
+      method: 'get',
+      params: {
+        id: 1
+      },
+      timeout: 1000
+    }).then(mes => {
+      console.log(mes.data);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+  // 增
+  btn2.onclick = function () {
+    myAxios({
+      url: '/student',
+      method: 'post',
+      data: {
+        "name": "xiaoma",
+        "age": 18
+      },
+      timeout: 1000
+    }).then(mes => {
+      console.log(mes.data);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+  // 改
+  btn3.onclick = function () {
+    axios({
+      url: 'http://localhost:3000/student/1',
+      method: 'put',
+      data: {
+        name: "laozhang",
+        age: 20
+      },
+      timeout: 1000
+    }).then(mes => {
+      console.log(mes.data);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+  // 删
+  btn4.onclick = function () {
+    axios({
+      url: 'http://localhost:3000/student/8',
+      method: 'delete',
+      timeout: 1000
+    }).then(mes => {
+      console.log(mes.data);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+</script>
+
+</html>
