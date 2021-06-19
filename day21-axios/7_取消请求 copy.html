@@ -28,23 +28,28 @@
     const CancelToken = axios.CancelToken
     const source = CancelToken.source();
 
-    btn1.onclick = function () {
+    oBtn1.onclick = function () {
       myaxios({
         url: '/login',
         method: 'GET',
         params: {
-          name: 'aaa',
+          name: 'aa',
           pass: '123'
         },
         // 给请求添加标记
-        CancelToken: source.token,
+        cancelToken: source.token,
       }).then(mes => {
         console.log(mes.data);
       }).catch(err => {
         console.log(err);
+        // 判断是否被取消
+        if (axios.isCancel(err)) {
+          console.log("取消了");
+        }
       })
     }
     oBtn2.onclick = function () {
+      console.log(1);
       //取消请求
       source.cancel("请求取消了 ");
     }

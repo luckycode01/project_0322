@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+
+    }
+    Person.prototype.do = function () {
+      console.log('eat');
+    }
+
+    /**
+     * new
+     * 1、创建一个对象，并返回
+     * 2、改变this指向，（该对象）
+     * 3、把对象隐式原型指向了构造函数的显示原型
+     * 4、判断构造函数返回值，基本数据类型还是对象数据类型
+     * 基本数据类型则不影响，对象数据类型，返回这个对象
+    */
+    function myNew(constr, ...rest) {
+      const obj = {};
+      const re = constr.apply(obj, rest);
+      obj.__proto__ = constr.prototype;
+      if (typeof re === 'object' && re !== null || typeof re === "function") {
+        return re;
+      }
+      return obj;
+
+    }
+
+    const p = myNew(Person, 'aaa', 18)
+    console.log(p);
+  </script>
+</body>
+
+</html>
